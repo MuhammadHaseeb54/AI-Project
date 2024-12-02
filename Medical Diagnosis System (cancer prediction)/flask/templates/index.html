@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Diagnosis Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cancer Diagnosis Prediction</h1>
+        <form method="POST" action="/predict">
+            {% for feature in all_features %}
+                <label for="{{ feature }}">{{ feature }}</label>
+                <input type="number" step="any" name="{{ feature }}" required>
+            {% endfor %}
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if diagnosis %}
+            <div class="result">
+                <p>Prediction: {{ diagnosis }}</p>
+                <p>Prediction Probability: {{ probability }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
